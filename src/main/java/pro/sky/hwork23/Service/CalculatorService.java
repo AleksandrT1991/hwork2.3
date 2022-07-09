@@ -1,6 +1,7 @@
 package pro.sky.hwork23.Service;
 
 import org.springframework.stereotype.Service;
+import pro.sky.hwork23.exception.DivideByZeroException;
 
 @Service
     public class CalculatorService {
@@ -9,18 +10,23 @@ import org.springframework.stereotype.Service;
         return "Добро пожаловать в калькулятор";
     }
 
-    public float plus(float a, float b) {
+    public Number plus(Integer a, Integer b) {
         return a + b;
 
     }
-    public float minus(float a, float b) {
+    public Number minus(Integer a, Integer b) {
         return a - b;
 
     }
-    public float multiply(float a, float b) {
+    public Number multiply(Integer a, Integer b) {
         return  a * b;
     }
-    public float divide(float a, float b) {
-        return a / b;
+    public Number divide(Integer a, Integer b) {
+        if (b == 0) {
+            throw new DivideByZeroException("Делить на ноль нельзя!");
+        }
+        return  a / b;
     }
+
+
 }
